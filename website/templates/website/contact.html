@@ -1,0 +1,240 @@
+
+{% extends "website/base.html" %}
+
+{% block title %}Contact Us | CNG Automations{% endblock %}
+
+{% block meta_description %}
+Contact CNG Automations to discuss AI agents, business workflow automation, CRM integration, and chatbot development.
+{% endblock %}
+
+{% block content %}
+
+<section class="relative overflow-hidden bg-slate-950 text-white">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -top-32 right-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <div data-aos="fade-up" class="max-w-3xl">
+            <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300">
+                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                Let's build something smarter
+            </span>
+
+            <h1 class="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+                Let's solve your business challenges with
+                <span class="text-emerald-400">AI automation.</span>
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                Tell us what's slowing your business down. We'll explore how AI
+                and automation can help you save time, improve customer
+                experiences, and streamline your operations.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-slate-950 px-6 pb-20 text-white md:pb-28">
+    <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-5">
+
+        <!-- Contact information -->
+        <div data-aos="fade-right" class="lg:col-span-2">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                Get in touch
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold">
+                Tell us what you want to automate.
+            </h2>
+
+            <p class="mt-5 leading-7 text-slate-400">
+                Whether you need an AI assistant, an automated sales process,
+                CRM integration, or a custom workflow, let's discuss your goals.
+            </p>
+
+            <div class="mt-10 space-y-6">
+                <div class="flex items-start gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="1.8"
+                                  d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Email</h3>
+                        <p class="mt-1 text-sm leading-6 text-slate-400">
+                            Send us your project enquiry through the form.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="1.8"
+                                  d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Project discussions</h3>
+                        <p class="mt-1 text-sm leading-6 text-slate-400">
+                            Share your goals, challenges, and expected outcomes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="1.8"
+                                  d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Practical solutions</h3>
+                        <p class="mt-1 text-sm leading-6 text-slate-400">
+                            Focus on useful automation that addresses real business needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact form -->
+        <div data-aos="fade-left"
+             class="rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl shadow-black/20 sm:p-8 lg:col-span-3">
+
+            <h2 class="text-2xl font-bold">Tell us about your project</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-400">
+                Complete the form below and we'll have the details we need to get started.
+            </p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mt-6 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if form.non_field_errors %}
+                <div class="mt-6 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'contact' %}" class="mt-8 space-y-6">
+                {% csrf_token %}
+
+                <div class="grid gap-6 sm:grid-cols-2">
+                    <div>
+                        <label for="id_name" class="mb-2 block text-sm font-medium text-slate-200">
+                            Full name <span class="text-emerald-400">*</span>
+                        </label>
+                        <input id="id_name" name="name" type="text" required
+                               autocomplete="name"
+                               value="{{ form.name.value|default:'' }}"
+                               placeholder="Your full name"
+                               class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">
+                        {% if form.name.errors %}
+                            <p class="mt-2 text-sm text-red-400">{{ form.name.errors }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <label for="id_email" class="mb-2 block text-sm font-medium text-slate-200">
+                            Email address <span class="text-emerald-400">*</span>
+                        </label>
+                        <input id="id_email" name="email" type="email" required
+                               autocomplete="email"
+                               value="{{ form.email.value|default:'' }}"
+                               placeholder="you@company.com"
+                               class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">
+                        {% if form.email.errors %}
+                            <p class="mt-2 text-sm text-red-400">{{ form.email.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="grid gap-6 sm:grid-cols-2">
+                    <div>
+                        <label for="id_company" class="mb-2 block text-sm font-medium text-slate-200">
+                            Company name
+                        </label>
+                        <input id="id_company" name="company" type="text"
+                               autocomplete="organization"
+                               value="{{ form.company.value|default:'' }}"
+                               placeholder="Your business (optional)"
+                               class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">
+                    </div>
+
+                    <div>
+                        <label for="id_service" class="mb-2 block text-sm font-medium text-slate-200">
+                            Service needed <span class="text-emerald-400">*</span>
+                        </label>
+                        <select id="id_service" name="service" required
+                                class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">
+                            <option value="">Choose a service</option>
+                            <option value="ai_agents" {% if form.service.value == "ai_agents" %}selected{% endif %}>AI Agents</option>
+                            <option value="workflow_automation" {% if form.service.value == "workflow_automation" %}selected{% endif %}>Workflow Automation</option>
+                            <option value="crm_automation" {% if form.service.value == "crm_automation" %}selected{% endif %}>CRM Automation</option>
+                            <option value="chatbots" {% if form.service.value == "chatbots" %}selected{% endif %}>AI Chatbots</option>
+                            <option value="web_development" {% if form.service.value == "web_development" %}selected{% endif %}>Web Development</option>
+                            <option value="other" {% if form.service.value == "other" %}selected{% endif %}>Other</option>
+                        </select>
+                        {% if form.service.errors %}
+                            <p class="mt-2 text-sm text-red-400">{{ form.service.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label for="id_budget" class="mb-2 block text-sm font-medium text-slate-200">
+                        Estimated budget
+                    </label>
+                    <select id="id_budget" name="budget"
+                            class="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">
+                        <option value="">Select a budget (optional)</option>
+                        <option value="Under $250" {% if form.budget.value == "Under $250" %}selected{% endif %}>Under $250</option>
+                        <option value="$250–$500" {% if form.budget.value == "$250–$500" %}selected{% endif %}>$250–$500</option>
+                        <option value="$500–$1,000" {% if form.budget.value == "$500–$1,000" %}selected{% endif %}>$500–$1,000</option>
+                        <option value="$1,000+" {% if form.budget.value == "$1,000+" %}selected{% endif %}>$1,000+</option>
+                        <option value="Not sure yet" {% if form.budget.value == "Not sure yet" %}selected{% endif %}>Not sure yet</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="id_message" class="mb-2 block text-sm font-medium text-slate-200">
+                        Tell us about your project <span class="text-emerald-400">*</span>
+                    </label>
+                    <textarea id="id_message" name="message" rows="5" required
+                              placeholder="What challenge are you trying to solve? What would you like to automate?"
+                              class="w-full resize-y rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20">{{ form.message.value|default:'' }}</textarea>
+                    {% if form.message.errors %}
+                        <p class="mt-2 text-sm text-red-400">{{ form.message.errors }}</p>
+                    {% endif %}
+                </div>
+
+                <button type="submit"
+                        class="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-400 px-6 py-4 font-semibold text-slate-950 transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-900 sm:w-auto">
+                    Send project enquiry
+                    <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+                </button>
+
+                <p class="text-xs leading-5 text-slate-500">
+                    Your information will be used to respond to your enquiry.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

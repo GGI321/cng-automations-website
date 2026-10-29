@@ -1,0 +1,1006 @@
+
+{% extends "website/base.html" %}
+
+{% block title %}AI Automation Agency | CRM & Email Automation | CNG Automations{% endblock %}
+
+{% block meta_description %}CNG Automations builds AI automation, CRM automation, email automation, AI voice agents and business workflow integrations to help real estate, healthcare and sales teams reduce repetitive work and operate more efficiently.{% endblock %}
+
+{% block extra_head %}
+<style>
+    html { scroll-behavior: smooth; }
+
+    .hero-carousel {
+        position: relative;
+        isolation: isolate;
+        min-height: 690px;
+        background: #020617;
+        overflow: hidden;
+    }
+
+    .hero-slide {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .hero-slide.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .hero-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(2, 6, 23, .96) 0%,
+            rgba(2, 6, 23, .86) 48%,
+            rgba(2, 6, 23, .40) 100%
+        );
+    }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #34d399, #6ee7b7, #67e8f9);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .glass-card {
+        background: rgba(2, 6, 23, .65);
+        backdrop-filter: blur(14px);
+    }
+
+    .progress-fill {
+        display: block;
+        width: 0;
+        height: 3px;
+        background: #34d399;
+    }
+
+    .progress-fill.running {
+        animation: carousel-progress 7s linear forwards;
+    }
+
+    @keyframes carousel-progress {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    .industry-card {
+        transition: transform .3s ease, border-color .3s ease;
+    }
+
+    .industry-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(52, 211, 153, .5);
+    }
+
+    .industry-card img {
+        transition: transform .5s ease;
+    }
+
+    .industry-card:hover img {
+        transform: scale(1.04);
+    }
+
+    .grid-pattern {
+        background-image:
+            linear-gradient(rgba(148, 163, 184, .04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 184, .04) 1px, transparent 1px);
+        background-size: 42px 42px;
+    }
+
+    @media (max-width: 640px) {
+        .hero-carousel { min-height: 730px; }
+
+        .hero-slide::after {
+            background: linear-gradient(
+                90deg,
+                rgba(2, 6, 23, .93),
+                rgba(2, 6, 23, .72)
+            );
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+
+        .hero-slide,
+        .industry-card,
+        .industry-card img {
+            transition: none;
+        }
+
+        .progress-fill.running {
+            animation: none;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO: AUTOMATIC IMAGE CAROUSEL -->
+<section class="hero-carousel flex items-center text-white">
+
+    <div class="hero-slide active" data-slide>
+        <img
+            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=85"
+            alt="Real estate property representing property lead management and CRM automation"
+            fetchpriority="high">
+    </div>
+
+    <div class="hero-slide" data-slide>
+        <img
+            src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=2000&q=85"
+            alt="Healthcare facility representing AI voice agents and appointment workflow automation"
+            loading="lazy">
+    </div>
+
+    <div class="hero-slide" data-slide>
+        <img
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=85"
+            alt="Business professionals collaborating with connected business systems"
+            loading="lazy">
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-6 py-20 sm:py-24 lg:py-28">
+        <div class="max-w-3xl" data-aos="fade-up">
+
+            <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
+                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                AI automation built around your business
+            </div>
+
+            <h1 class="mt-7 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
+                Give Your Business
+                <span class="gradient-text">Time Back.</span>
+                <span class="block">Automate the Work That Slows You Down.</span>
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+                From CRM automation and email automation to AI voice agents
+                and intelligent customer replies, we connect your business
+                processes so your team spends less time on repetitive tasks
+                and more time serving customers and growing revenue.
+            </p>
+
+            <div class="glass-card mt-7 max-w-2xl rounded-xl border border-white/10 p-4">
+                <p class="text-sm font-semibold leading-6 text-emerald-200"
+                   data-slide-caption aria-live="polite">
+                    Real estate: capture property enquiries, organize buyer
+                    details, and automate follow-ups.
+                </p>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a href="{% url 'contact' %}"
+                   class="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-7 py-4 font-semibold text-slate-950 transition hover:-translate-y-1 hover:bg-emerald-300">
+                    Discuss Your Automation Needs →
+                </a>
+
+                <a href="{% url 'services' %}"
+                   class="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/5 px-7 py-4 font-semibold text-white transition hover:bg-white/10">
+                    Explore Our Services
+                </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-300">
+                <span>✓ Less manual work</span>
+                <span>✓ More organized workflows</span>
+                <span>✓ Human oversight where needed</span>
+            </div>
+        </div>
+
+        <div class="mt-10 flex max-w-md items-center gap-3">
+            <button type="button" data-prev
+                    aria-label="Previous slide"
+                    class="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 hover:bg-white/10">
+                ←
+            </button>
+
+            <div class="flex flex-1 gap-2">
+                <button type="button" data-dot="0" aria-label="Show real estate slide"
+                        aria-pressed="true"
+                        class="flex-1 overflow-hidden rounded-full bg-white/25">
+                    <span class="progress-fill running"></span>
+                </button>
+                <button type="button" data-dot="1" aria-label="Show healthcare slide"
+                        aria-pressed="false"
+                        class="flex-1 overflow-hidden rounded-full bg-white/25">
+                    <span class="progress-fill"></span>
+                </button>
+                <button type="button" data-dot="2" aria-label="Show business automation slide"
+                        aria-pressed="false"
+                        class="flex-1 overflow-hidden rounded-full bg-white/25">
+                    <span class="progress-fill"></span>
+                </button>
+            </div>
+
+            <button type="button" data-next
+                    aria-label="Next slide"
+                    class="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 hover:bg-white/10">
+                →
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- VALUE PROPOSITION -->
+<section class="bg-slate-900 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                The hidden cost of manual work
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                Busy teams don't always need more staff. Sometimes they need better systems.
+            </h2>
+
+            <p class="mt-5 text-lg leading-8 text-slate-400">
+                Repeated data entry, unanswered enquiries, manual reminders,
+                and disconnected applications consume working hours.
+                AI automation helps businesses reduce unnecessary steps,
+                improve consistency, and make better use of their existing teams.
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7"
+                     data-aos="fade-up">
+                <p class="text-sm font-semibold text-emerald-400">SAVE TIME</p>
+                <h3 class="mt-4 text-2xl font-bold">Stop repeating the same tasks</h3>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Automate routine email handling, CRM updates, reminders,
+                    lead capture, and information transfer so your team
+                    has more time for work that requires human judgment.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7"
+                     data-aos="fade-up" data-aos-delay="100">
+                <p class="text-sm font-semibold text-emerald-400">CONTROL COSTS</p>
+                <h3 class="mt-4 text-2xl font-bold">Reduce avoidable overhead</h3>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Reduce duplicate work, manual administration, and
+                    avoidable process errors. Measure the time saved against
+                    setup, software, and maintenance costs to understand
+                    whether an automation delivers real value.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7"
+                     data-aos="fade-up" data-aos-delay="200">
+                <p class="text-sm font-semibold text-emerald-400">REDUCE FRICTION</p>
+                <h3 class="mt-4 text-2xl font-bold">Make work easier to manage</h3>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Connect business tools, organize information, and
+                    create clearer handoffs so your people spend less
+                    energy chasing updates and switching between systems.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="bg-slate-950 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                Automation for real business operations
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                We focus on the everyday problems costing businesses time and money.
+            </h2>
+
+            <p class="mt-5 text-lg leading-8 text-slate-400">
+                Here's how AI agents, CRM automation, email workflows,
+                and system integrations can help different industries.
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-7 md:grid-cols-2">
+
+            <!-- REAL ESTATE -->
+            <article class="industry-card overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70"
+                     data-aos="fade-up">
+                <div class="h-60 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80"
+                        alt="Property buildings representing real estate lead generation and CRM management"
+                        loading="lazy"
+                        class="h-full w-full object-cover">
+                </div>
+
+                <div class="p-7 sm:p-8">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                        Real Estate
+                    </p>
+
+                    <h3 class="mt-3 text-2xl font-bold">
+                        Turn property enquiries into an organized sales pipeline.
+                    </h3>
+
+                    <p class="mt-4 leading-7 text-slate-400">
+                        A property agency might receive enquiries from
+                        listing websites, email, website forms, and WhatsApp.
+                        Without a connected CRM workflow, agents may need
+                        to copy buyer details, remember follow-ups, and
+                        search through old messages to understand each lead.
+                    </p>
+
+                    <h4 class="mt-6 font-semibold">What we can automate</h4>
+
+                    <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                        <li>✓ Capture new enquiries and create CRM records.</li>
+                        <li>✓ Organize budget, preferred location, and property requirements.</li>
+                        <li>✓ Assign leads to the appropriate agent.</li>
+                        <li>✓ Send viewing confirmations and follow-up emails.</li>
+                        <li>✓ Notify agents when a buyer needs personal attention.</li>
+                    </ul>
+
+                    <div class="mt-6 rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-4">
+                        <p class="leading-7 text-emerald-100">
+                            <strong>The business value:</strong> less time
+                            spent on administration, fewer forgotten follow-ups,
+                            and more time for property viewings and sales.
+                        </p>
+                    </div>
+
+                    <a href="{% url 'contact' %}"
+                       class="mt-6 inline-flex font-semibold text-emerald-400 hover:text-emerald-300">
+                        Explore real estate CRM automation →
+                    </a>
+                </div>
+            </article>
+
+            <!-- HEALTHCARE -->
+            <article class="industry-card overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70"
+                     data-aos="fade-up" data-aos-delay="100">
+                <div class="h-60 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80"
+                        alt="Healthcare facility representing patient communication and clinic appointment automation"
+                        loading="lazy"
+                        class="h-full w-full object-cover">
+                </div>
+
+                <div class="p-7 sm:p-8">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                        Hospitals & Clinics
+                    </p>
+
+                    <h3 class="mt-3 text-2xl font-bold">
+                        Use AI voice agents to support routine patient communication.
+                    </h3>
+
+                    <p class="mt-4 leading-7 text-slate-400">
+                        Reception teams often balance phone calls, patient
+                        arrivals, appointment scheduling, and administrative
+                        questions. A carefully scoped AI voice agent can
+                        assist with routine communication while staff focus
+                        on patients who need human attention.
+                    </p>
+
+                    <h4 class="mt-6 font-semibold">What we can automate</h4>
+
+                    <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                        <li>✓ Answer approved administrative questions.</li>
+                        <li>✓ Collect appointment requests and preferred times.</li>
+                        <li>✓ Send appointment confirmations and reminders.</li>
+                        <li>✓ Route complex or urgent calls to appropriate staff.</li>
+                        <li>✓ Record authorized appointment information in connected systems.</li>
+                    </ul>
+
+                    <div class="mt-6 rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-4">
+                        <p class="leading-7 text-emerald-100">
+                            <strong>The business value:</strong> less routine
+                            phone administration, more organized appointments,
+                            and fewer repetitive interruptions for reception staff.
+                        </p>
+                    </div>
+
+                    <p class="mt-4 text-xs leading-6 text-slate-500">
+                        Patient privacy, secure access, and human escalation
+                        are essential. Voice agents should not replace
+                        qualified clinicians or independently manage emergencies.
+                    </p>
+
+                    <a href="{% url 'contact' %}"
+                       class="mt-6 inline-flex font-semibold text-emerald-400 hover:text-emerald-300">
+                        Explore healthcare automation →
+                    </a>
+                </div>
+            </article>
+
+            <!-- SALES -->
+            <article class="industry-card overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70"
+                     data-aos="fade-up">
+                <div class="h-60 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80"
+                        alt="Business team collaborating on sales operations and CRM workflows"
+                        loading="lazy"
+                        class="h-full w-full object-cover">
+                </div>
+
+                <div class="p-7 sm:p-8">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                        Sales & Business Development
+                    </p>
+
+                    <h3 class="mt-3 text-2xl font-bold">
+                        Help salespeople focus on the leads worth following up.
+                    </h3>
+
+                    <p class="mt-4 leading-7 text-slate-400">
+                        When every enquiry must be reviewed manually,
+                        sales teams can spend valuable hours sorting
+                        messages, updating records, and deciding what
+                        deserves attention first.
+                    </p>
+
+                    <h4 class="mt-6 font-semibold">What we can automate</h4>
+
+                    <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                        <li>✓ Classify leads by intent and stated requirements.</li>
+                        <li>✓ Create and update CRM records.</li>
+                        <li>✓ Draft personalized follow-up emails.</li>
+                        <li>✓ Assign leads and create sales tasks.</li>
+                        <li>✓ Alert staff when a lead needs a human decision.</li>
+                    </ul>
+
+                    <div class="mt-6 rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-4">
+                        <p class="leading-7 text-emerald-100">
+                            <strong>The business value:</strong> less manual
+                            lead sorting, more consistent follow-up, and a
+                            clearer view of the sales pipeline.
+                        </p>
+                    </div>
+
+                    <a href="{% url 'contact' %}"
+                       class="mt-6 inline-flex font-semibold text-emerald-400 hover:text-emerald-300">
+                        Explore sales automation →
+                    </a>
+                </div>
+            </article>
+
+            <!-- EMAIL & CUSTOMER SERVICE -->
+            <article class="industry-card overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70"
+                     data-aos="fade-up" data-aos-delay="100">
+                <div class="h-60 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
+                        alt="Business professionals discussing operations and customer service processes"
+                        loading="lazy"
+                        class="h-full w-full object-cover">
+                </div>
+
+                <div class="p-7 sm:p-8">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                        Customer Service & Operations
+                    </p>
+
+                    <h3 class="mt-3 text-2xl font-bold">
+                        Turn a crowded inbox into a more organized workflow.
+                    </h3>
+
+                    <p class="mt-4 leading-7 text-slate-400">
+                        Repeated questions, long email threads, manual
+                        ticket creation, and missed responses make it
+                        difficult to deliver consistent service as a
+                        business receives more enquiries.
+                    </p>
+
+                    <h4 class="mt-6 font-semibold">What we can automate</h4>
+
+                    <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                        <li>✓ Categorize incoming emails by topic and urgency.</li>
+                        <li>✓ Draft context-aware replies using approved information.</li>
+                        <li>✓ Create CRM records or support tickets.</li>
+                        <li>✓ Send routine notifications and follow-up reminders.</li>
+                        <li>✓ Escalate complaints and sensitive requests to a person.</li>
+                    </ul>
+
+                    <div class="mt-6 rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-4">
+                        <p class="leading-7 text-emerald-100">
+                            <strong>The business value:</strong> less repetitive
+                            typing, clearer ownership of requests, and more
+                            consistent customer communication.
+                        </p>
+                    </div>
+
+                    <a href="{% url 'contact' %}"
+                       class="mt-6 inline-flex font-semibold text-emerald-400 hover:text-emerald-300">
+                        Explore email automation →
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="bg-slate-900 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                What CNG Automations offers
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                The automation services that help businesses work smarter.
+            </h2>
+
+            <p class="mt-5 text-lg leading-8 text-slate-400">
+                We connect AI, business applications, APIs, and workflow
+                tools to help reduce manual work and improve how information
+                moves through your organization.
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up">
+                <div class="text-3xl">⚙️</div>
+                <h3 class="mt-5 text-xl font-bold">AI Automation & AI Agents</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Build AI-powered workflows that classify information,
+                    retrieve business knowledge, support decisions, and
+                    trigger defined actions with appropriate safeguards.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up" data-aos-delay="60">
+                <div class="text-3xl">📊</div>
+                <h3 class="mt-5 text-xl font-bold">CRM Automation</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Automate lead capture, contact updates, sales assignments,
+                    CRM notifications, task creation, and follow-up workflows.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up" data-aos-delay="120">
+                <div class="text-3xl">✉️</div>
+                <h3 class="mt-5 text-xl font-bold">Email Automation</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Create email workflows for message classification,
+                    AI-drafted replies, notifications, customer follow-ups,
+                    and approval before sending when required.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up">
+                <div class="text-3xl">🎙️</div>
+                <h3 class="mt-5 text-xl font-bold">AI Voice Agents</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Support routine inbound calls, appointment requests,
+                    call routing, and reminders through defined voice
+                    workflows with human escalation.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up" data-aos-delay="60">
+                <div class="text-3xl">💬</div>
+                <h3 class="mt-5 text-xl font-bold">WhatsApp & AI Customer Replies</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Automate supported customer conversations, answer
+                    approved product questions, collect order details,
+                    and route complex requests to staff.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/60 p-7" data-aos="fade-up" data-aos-delay="120">
+                <div class="text-3xl">🔌</div>
+                <h3 class="mt-5 text-xl font-bold">API & Workflow Integration</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Connect databases, forms, CRMs, email platforms, and
+                    business applications to reduce manual data transfer
+                    and repetitive administrative steps.
+                </p>
+            </article>
+        </div>
+
+        <div class="mt-10 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+            <div>
+                <h3 class="text-xl font-bold">Not sure what to automate first?</h3>
+                <p class="mt-2 max-w-2xl leading-7 text-slate-400">
+                    Start with the task that repeatedly delays your team,
+                    frustrates customers, or creates unnecessary manual work.
+                </p>
+            </div>
+
+            <a href="{% url 'contact' %}"
+               class="mt-5 inline-flex shrink-0 items-center justify-center rounded-xl bg-emerald-400 px-5 py-3 font-semibold text-slate-950 hover:bg-emerald-300 sm:mt-0">
+                Discuss Your Workflow →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="bg-slate-950 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                From business problem to practical solution
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                Automation should simplify your business, not complicate it.
+            </h2>
+
+            <p class="mt-5 leading-8 text-slate-400">
+                We focus on the process first, select the appropriate
+                technology, and test the workflow before relying on it.
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="rounded-2xl border border-white/10 bg-slate-900/70 p-6" data-aos="fade-up">
+                <p class="text-sm font-bold text-emerald-400">STEP 01</p>
+                <h3 class="mt-4 text-xl font-bold">Understand</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Identify the bottleneck, current tools, and the
+                    outcome your business needs.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-900/70 p-6" data-aos="fade-up" data-aos-delay="60">
+                <p class="text-sm font-bold text-emerald-400">STEP 02</p>
+                <h3 class="mt-4 text-xl font-bold">Design</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Map the workflow, data requirements, decision points,
+                    and necessary human handoffs.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-900/70 p-6" data-aos="fade-up" data-aos-delay="120">
+                <p class="text-sm font-bold text-emerald-400">STEP 03</p>
+                <h3 class="mt-4 text-xl font-bold">Build & Test</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Implement the automation and test normal cases,
+                    errors, and exceptions.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-900/70 p-6" data-aos="fade-up" data-aos-delay="180">
+                <p class="text-sm font-bold text-emerald-400">STEP 04</p>
+                <h3 class="mt-4 text-xl font-bold">Refine</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    Review performance against agreed requirements
+                    and identify improvements.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="bg-slate-900 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between" data-aos="fade-up">
+            <div class="max-w-3xl">
+                <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                    Practical projects
+                </p>
+
+                <h2 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+                    See how the systems work behind the scenes.
+                </h2>
+
+                <p class="mt-5 leading-8 text-slate-400">
+                    Explore projects demonstrating lead qualification,
+                    AI knowledge retrieval, CRM routing, and conversational
+                    sales workflows.
+                </p>
+            </div>
+
+            <a href="{% url 'projects' %}"
+               class="inline-flex shrink-0 font-semibold text-emerald-400 hover:text-emerald-300">
+                View All Projects →
+            </a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-7" data-aos="fade-up">
+                <p class="text-sm font-semibold text-emerald-400">PYTHON · FASTAPI · AI</p>
+                <h3 class="mt-4 text-xl font-bold">AI Lead Qualification API</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    A prototype API that classifies incoming lead messages
+                    into structured categories to support more organized
+                    sales follow-up.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-7" data-aos="fade-up" data-aos-delay="80">
+                <p class="text-sm font-semibold text-emerald-400">N8N · RAG · CRM</p>
+                <h3 class="mt-4 text-xl font-bold">AI Lead Routing Workflow</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    An n8n workflow combining knowledge retrieval,
+                    lead classification, database operations, and
+                    CRM routing.
+                </p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-slate-950/70 p-7" data-aos="fade-up" data-aos-delay="160">
+                <p class="text-sm font-semibold text-emerald-400">WHATSAPP · AI</p>
+                <h3 class="mt-4 text-xl font-bold">Conversational Sales Automation</h3>
+                <p class="mt-3 leading-7 text-slate-400">
+                    A sales-assistant workflow designed to handle
+                    supported product questions, collect order details,
+                    and guide customers through defined steps.
+                </p>
+            </article>
+        </div>
+
+        <p class="mt-6 text-sm leading-6 text-slate-500">
+            These are project capabilities and intended workflows.
+            Actual results depend on implementation, testing, and the
+            business environment.
+        </p>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-slate-950 py-20 text-white sm:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+                Frequently asked questions
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
+                What businesses should know about AI automation.
+            </h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    What is AI automation?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    AI automation combines artificial intelligence with
+                    software workflows to classify information, prepare
+                    responses, retrieve approved knowledge, and trigger
+                    defined actions within business processes.
+                </p>
+            </details>
+
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    How does CRM automation help a business?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    CRM automation can capture leads, update customer
+                    records, assign sales tasks, send reminders, and
+                    coordinate follow-ups. It reduces repetitive data
+                    handling and makes customer activity easier to track.
+                </p>
+            </details>
+
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    Can AI automate email replies?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Yes. A workflow can categorize emails, prepare replies
+                    from approved company information, and route messages
+                    for review. Automatic sending should be reserved for
+                    cases where the rules and information are sufficiently clear.
+                </p>
+            </details>
+
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    Can a small business benefit from automation?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Yes. A business can begin with one recurring process,
+                    such as capturing leads, responding to common enquiries,
+                    sending reminders, or connecting two applications.
+                    Start where the current process creates the most friction.
+                </p>
+            </details>
+
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    Will AI replace the need for staff?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    The goal is to reduce repetitive handling and help
+                    staff use their time more effectively. Complex,
+                    sensitive, and uncertain situations should still
+                    have appropriate human oversight.
+                </p>
+            </details>
+
+            <details class="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+                <summary class="cursor-pointer font-semibold">
+                    How much does business automation cost?
+                </summary>
+                <p class="mt-4 leading-7 text-slate-400">
+                    Cost depends on workflow complexity, integrations,
+                    software usage, testing, and support requirements.
+                    The best starting point is to assess the process
+                    and its potential value before deciding what to build.
+                </p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="relative overflow-hidden bg-slate-900 py-20 text-white sm:py-28">
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-cyan-500/10"></div>
+
+    <div class="relative mx-auto max-w-5xl px-6 text-center" data-aos="zoom-in">
+        <p class="text-sm font-semibold uppercase tracking-widest text-emerald-400">
+            Your next improvement starts here
+        </p>
+
+        <h2 class="mt-5 text-3xl font-bold leading-tight sm:text-4xl md:text-6xl">
+            How much more could your business accomplish with less manual work?
+        </h2>
+
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Tell us what consumes your team's time, where customer
+            enquiries get stuck, or which business tools don't work
+            well together. Let's identify a practical automation opportunity.
+        </p>
+
+        <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+            <a href="{% url 'contact' %}"
+               class="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-7 py-4 font-semibold text-slate-950 transition hover:-translate-y-1 hover:bg-emerald-300">
+                Discuss Your Automation Project →
+            </a>
+
+            <a href="{% url 'about' %}"
+               class="inline-flex items-center justify-center rounded-xl border border-white/20 px-7 py-4 font-semibold text-white hover:bg-white/5">
+                Learn About CNG Automations
+            </a>
+        </div>
+
+        <p class="mt-6 text-sm text-slate-500">
+            Start with the business problem. We'll work through the technical details together.
+        </p>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+    const slides = Array.from(document.querySelectorAll("[data-slide]"));
+    const dots = Array.from(document.querySelectorAll("[data-dot]"));
+    const caption = document.querySelector("[data-slide-caption]");
+    const prev = document.querySelector("[data-prev]");
+    const next = document.querySelector("[data-next]");
+    const hero = document.querySelector(".hero-carousel");
+
+    if (!slides.length || !dots.length || !caption) return;
+
+    const captions = [
+        "Real estate: capture property enquiries, organize buyer details, and automate follow-ups.",
+        "Healthcare: support routine appointment calls, confirmations, and reminders with AI voice workflows.",
+        "Sales teams: connect CRM updates, email follow-ups, and AI-assisted lead qualification."
+    ];
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+    let timer = null;
+    let paused = false;
+
+    function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === current);
+            slide.setAttribute("aria-hidden", i === current ? "false" : "true");
+        });
+
+        dots.forEach((dot, i) => {
+            dot.setAttribute("aria-pressed", i === current ? "true" : "false");
+
+            const fill = dot.querySelector(".progress-fill");
+            if (fill) {
+                fill.classList.remove("running");
+                fill.style.width = "0";
+
+                if (i === current && !reduceMotion.matches) {
+                    void fill.offsetWidth;
+                    fill.classList.add("running");
+                } else if (i === current) {
+                    fill.style.width = "100%";
+                }
+            }
+        });
+
+        caption.textContent = captions[current];
+    }
+
+    function stopTimer() {
+        if (timer) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function startTimer() {
+        stopTimer();
+
+        if (!paused && !reduceMotion.matches) {
+            timer = window.setInterval(() => showSlide(current + 1), 7000);
+        }
+    }
+
+    dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+            showSlide(Number(dot.dataset.dot));
+            startTimer();
+        });
+    });
+
+    prev?.addEventListener("click", () => {
+        showSlide(current - 1);
+        startTimer();
+    });
+
+    next?.addEventListener("click", () => {
+        showSlide(current + 1);
+        startTimer();
+    });
+
+    if (hero) {
+        hero.addEventListener("mouseenter", () => {
+            paused = true;
+            stopTimer();
+        });
+
+        hero.addEventListener("mouseleave", () => {
+            paused = false;
+            startTimer();
+        });
+
+        hero.addEventListener("focusin", () => {
+            paused = true;
+            stopTimer();
+        });
+
+        hero.addEventListener("focusout", () => {
+            paused = false;
+            startTimer();
+        });
+    }
+
+    reduceMotion.addEventListener?.("change", startTimer);
+
+    showSlide(0);
+    startTimer();
+})();
+</script>
+{% endblock %}
