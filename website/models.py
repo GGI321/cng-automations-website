@@ -39,6 +39,12 @@ class Project(models.Model):
     live_demo_url = models.URLField(blank=True)
     source_code_url = models.URLField(blank=True)
 
+    # YouTube project demonstration link
+    video_url = models.URLField(
+        blank=True,
+        help_text="YouTube link for the project demonstration"
+    )
+
     is_featured = models.BooleanField(default=False)
     is_published = models.BooleanField(default=False)
 
@@ -76,8 +82,6 @@ class Project(models.Model):
             for technology in self.technologies.split(",")
             if technology.strip()
         ]
-
-from django.db import models
 
 
 class ContactEnquiry(models.Model):

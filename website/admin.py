@@ -1,9 +1,6 @@
-from django.contrib import admin
-
-# Register your models here.
 
 from django.contrib import admin
-from .models import Project
+from .models import Project, ContactEnquiry
 
 
 @admin.register(Project)
@@ -56,6 +53,7 @@ class ProjectAdmin(admin.ModelAdmin):
             "fields": (
                 "live_demo_url",
                 "source_code_url",
+                "video_url",
             )
         }),
         ("Publishing", {
@@ -71,9 +69,6 @@ class ProjectAdmin(admin.ModelAdmin):
         }),
     )
 
-from django.contrib import admin
-from .models import ContactEnquiry
-
 
 @admin.register(ContactEnquiry)
 class ContactEnquiryAdmin(admin.ModelAdmin):
@@ -85,7 +80,11 @@ class ContactEnquiryAdmin(admin.ModelAdmin):
         "status",
         "created_at",
     )
+
     list_filter = ("status", "service", "created_at")
+
     search_fields = ("name", "email", "company", "message")
+
     list_editable = ("status",)
+
     readonly_fields = ("created_at",)
