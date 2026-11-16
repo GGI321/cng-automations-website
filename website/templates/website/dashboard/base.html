@@ -1,0 +1,25 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+<main class="min-h-[70vh] bg-[#080B12]">
+    <div class="mx-auto max-w-7xl px-5 py-10 sm:px-6 md:py-14">
+        <div class="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Private workspace</p>
+                <h1 class="mt-2 text-3xl font-bold sm:text-4xl">{% block dashboard_title %}Dashboard{% endblock %}</h1>
+            </div>
+            <nav class="flex flex-wrap gap-3" aria-label="Dashboard navigation">
+                <a href="{% url 'dashboard' %}" class="rounded-lg border border-white/10 px-4 py-2 text-sm text-gray-200 hover:border-emerald-300/50">Overview</a>
+                <a href="{% url 'dashboard_projects' %}" class="rounded-lg border border-white/10 px-4 py-2 text-sm text-gray-200 hover:border-emerald-300/50">Projects</a>
+                <a href="{% url 'dashboard_project_add' %}" class="rounded-lg bg-emerald-300 px-4 py-2 text-sm font-semibold text-gray-950 hover:bg-emerald-200">Add project</a>
+            </nav>
+        </div>
+        {% if messages %}
+            <div class="mb-6 space-y-2" aria-live="polite">
+                {% for message in messages %}<p class="rounded-xl border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-sm text-emerald-100">{{ message }}</p>{% endfor %}
+            </div>
+        {% endif %}
+        {% block dashboard_content %}{% endblock %}
+    </div>
+</main>
+{% endblock %}

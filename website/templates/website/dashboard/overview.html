@@ -1,0 +1,24 @@
+{% extends "website/dashboard/base.html" %}
+{% block title %}Dashboard | CNG Automations{% endblock %}
+{% block dashboard_title %}Overview{% endblock %}
+{% block dashboard_content %}
+<section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Portfolio summary">
+    <article class="rounded-2xl border border-white/10 bg-[#101621] p-6"><p class="text-sm text-gray-400">Total projects</p><p class="mt-3 text-3xl font-bold">{{ total_projects }}</p></article>
+    <article class="rounded-2xl border border-white/10 bg-[#101621] p-6"><p class="text-sm text-gray-400">Published</p><p class="mt-3 text-3xl font-bold text-emerald-300">{{ published_projects }}</p></article>
+    <article class="rounded-2xl border border-white/10 bg-[#101621] p-6"><p class="text-sm text-gray-400">Drafts</p><p class="mt-3 text-3xl font-bold">{{ draft_projects }}</p></article>
+    <article class="rounded-2xl border border-white/10 bg-[#101621] p-6"><p class="text-sm text-gray-400">Contact enquiries</p><p class="mt-3 text-3xl font-bold">{{ total_enquiries }}</p></article>
+</section>
+<section class="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-[#101621]">
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-5 py-5 sm:px-6">
+        <div><h2 class="text-xl font-bold">Recently added</h2><p class="mt-1 text-sm text-gray-400">The latest projects in your portfolio.</p></div>
+        <a href="{% url 'dashboard_projects' %}" class="text-sm font-semibold text-emerald-300 hover:text-emerald-200">Manage projects →</a>
+    </div>
+    {% if recent_projects %}<div class="divide-y divide-white/10">
+        {% for project in recent_projects %}<article class="flex items-center gap-4 px-5 py-4 sm:px-6">
+            {% if project.featured_image %}<img src="{{ project.featured_image.url }}" alt="" class="h-14 w-20 rounded-lg border border-white/10 object-cover">{% else %}<div class="h-14 w-20 rounded-lg bg-white/5"></div>{% endif %}
+            <div class="min-w-0 flex-1"><h3 class="truncate font-semibold">{{ project.title }}</h3><p class="mt-1 text-sm text-gray-400">{{ project.created_at|date:"M j, Y" }} · {% if project.is_published %}Published{% else %}Draft{% endif %}</p></div>
+            <a href="{% url 'dashboard_project_edit' project.pk %}" class="text-sm text-emerald-300 hover:text-emerald-200">Edit</a>
+        </article>{% endfor %}
+    </div>{% else %}<p class="px-6 py-10 text-center text-gray-400">No projects yet. Add your first project to get started.</p>{% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "website/dashboard/base.html" %}
+{% block title %}{{ page_title }} | CNG Automations{% endblock %}
+{% block dashboard_title %}{{ page_title }}{% endblock %}
+{% block dashboard_content %}
+<form method="post" enctype="multipart/form-data" class="rounded-2xl border border-white/10 bg-[#101621] p-5 sm:p-8">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="mb-5 rounded-xl border border-red-300/20 bg-red-300/10 p-4 text-sm text-red-100">{{ form.non_field_errors }}</div>{% endif %}
+    <div class="grid gap-x-6 gap-y-5 md:grid-cols-2">
+        {% for field in form %}<div class="{% if field.name == 'problem' or field.name == 'solution' or field.name == 'implementation' or field.name == 'featured_image' %}md:col-span-2{% endif %}">
+            {% if field.field.widget.input_type == 'checkbox' %}<label for="{{ field.id_for_label }}" class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 font-medium">{{ field }}<span>{{ field.label }}</span></label>
+            {% else %}<label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-200">{{ field.label }}{% if field.field.required %}<span class="text-emerald-300"> *</span>{% endif %}</label>{{ field }}{% endif %}
+            {% if field.help_text %}<p class="mt-2 text-xs text-gray-500">{{ field.help_text }}</p>{% endif %}
+            {% for error in field.errors %}<p class="mt-2 text-sm text-red-300">{{ error }}</p>{% endfor %}
+            {% if field.name == 'featured_image' and project.featured_image %}<div class="mt-4 flex items-center gap-4"><img src="{{ project.featured_image.url }}" alt="Current image for {{ project.title }}" class="h-20 w-32 rounded-lg object-cover"><span class="text-sm text-gray-400">Current image</span></div>{% endif %}
+        </div>{% endfor %}
+    </div>
+    <div class="mt-8 flex flex-col-reverse gap-3 border-t border-white/10 pt-6 sm:flex-row sm:justify-end"><a href="{% url 'dashboard_projects' %}" class="rounded-xl border border-white/10 px-5 py-3 text-center text-sm font-semibold hover:border-white/20">Cancel</a><button type="submit" class="rounded-xl bg-emerald-300 px-6 py-3 text-sm font-bold text-gray-950 hover:bg-emerald-200">{{ submit_label }}</button></div>
+</form>
+{% endblock %}

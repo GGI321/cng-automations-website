@@ -1,0 +1,15 @@
+{% extends "website/dashboard/base.html" %}
+{% block title %}Manage Projects | CNG Automations{% endblock %}
+{% block dashboard_title %}Projects{% endblock %}
+{% block dashboard_content %}
+<section class="overflow-hidden rounded-2xl border border-white/10 bg-[#101621]">
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-5 py-5 sm:px-6"><div><h2 class="text-xl font-bold">All projects</h2><p class="mt-1 text-sm text-gray-400">{{ projects|length }} project{{ projects|length|pluralize }}</p></div><a href="{% url 'projects' %}" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-emerald-300 hover:text-emerald-200">View public portfolio ↗</a></div>
+    {% if projects %}<div class="divide-y divide-white/10">
+        {% for project in projects %}<article class="flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:px-6">
+            {% if project.featured_image %}<img src="{{ project.featured_image.url }}" alt="{{ project.title }} preview" class="h-20 w-full rounded-xl border border-white/10 object-cover sm:w-32">{% else %}<div class="flex h-20 w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-xs text-gray-500 sm:w-32">No image</div>{% endif %}
+            <div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="font-semibold">{{ project.title }}</h3><span class="rounded-full px-2.5 py-1 text-xs {% if project.is_published %}bg-emerald-300/10 text-emerald-200{% else %}bg-white/10 text-gray-300{% endif %}">{% if project.is_published %}Published{% else %}Draft{% endif %}</span>{% if project.is_featured %}<span class="rounded-full bg-blue-300/10 px-2.5 py-1 text-xs text-blue-200">Featured</span>{% endif %}</div><p class="mt-2 line-clamp-2 text-sm text-gray-400">{{ project.short_description }}</p><p class="mt-2 text-xs text-gray-500">{{ project.get_category_display }} · Updated {{ project.updated_at|date:"M j, Y" }}</p></div>
+            <div class="flex shrink-0 gap-3"><a href="{% url 'dashboard_project_edit' project.pk %}" class="rounded-lg border border-white/10 px-4 py-2 text-sm hover:border-emerald-300/50">Edit</a>{% if project.is_published %}<a href="{{ project.get_absolute_url }}" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-white/10 px-4 py-2 text-sm text-emerald-200 hover:border-emerald-300/50">View</a>{% endif %}<a href="{% url 'dashboard_project_delete' project.pk %}" class="rounded-lg border border-red-300/20 px-4 py-2 text-sm text-red-200 hover:bg-red-300/10">Delete</a></div>
+        </article>{% endfor %}
+    </div>{% else %}<div class="px-6 py-14 text-center"><h3 class="text-lg font-semibold">No projects to manage</h3><p class="mt-2 text-sm text-gray-400">Create a project to add it to your portfolio.</p><a href="{% url 'dashboard_project_add' %}" class="mt-5 inline-flex rounded-xl bg-emerald-300 px-5 py-3 font-semibold text-gray-950">Add project</a></div>{% endif %}
+</section>
+{% endblock %}
